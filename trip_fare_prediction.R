@@ -1,14 +1,10 @@
 library(data.table)
 library(caret)
 library(randomForest)
-library(data.table)
-library(caret)
-library(randomForest)
-library(caretEnsemble)
 library(moments)
 library(Metrics)
 
-dat <- fread("C:/Users/samantha.vandermerwe/Google Drive/Old Work Laptop Stuff/Documents/Assessment/Data/final.csv")
+dat <- fread("final.csv")
 dat$Weekday <- as.factor(dat$Weekday)
 dat[, TAVG := (TMAX + TMIN)/2]
 dat[is.na(dat)] <- 0
@@ -19,8 +15,7 @@ dat <- dat[fare_amount != 0]
 dat <- dat[fare_amount > 0]
 dat <- dat[Distance < 50]
 dat <- dat[Distance > 0]
-#apply log transform to the main predictor variable
-#dat$Distance <- log(dat$Distance)
+#apply box cox transform to the main predictor variable
 dat$Distance <- BoxCox(dat$Distance, lambda = 0.2)
 skewness(x)
 hist(x,
