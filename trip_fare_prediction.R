@@ -2,13 +2,10 @@ library(data.table)
 library(caret)
 library(randomForest)
 library(data.table)
-library(caret)
-library(randomForest)
-library(caretEnsemble)
 library(moments)
 library(Metrics)
 
-dat <- fread("C:/Users/samantha.vandermerwe/Google Drive/Old Work Laptop Stuff/Documents/Assessment/Data/final.csv")
+dat <- fread("~final.csv")
 dat$Weekday <- as.factor(dat$Weekday)
 dat[, TAVG := (TMAX + TMIN)/2]
 dat[is.na(dat)] <- 0
