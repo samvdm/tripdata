@@ -10,7 +10,7 @@ dat[, TAVG := (TMAX + TMIN)/2]
 dat[is.na(dat)] <- 0
 dat <- dat[, -1]
 dat <- dat[, .SD, .SDcols = c("Shift", "Hour", "label", "Distance", "PRCP", "TAVG", "passenger_count", "Weekday", "fare_amount", "year")]
-dat <- dat[, -"Weekday"]
+dat <- dat[, -"Weekdays"]
 dat <- dat[fare_amount != 0]
 dat <- dat[fare_amount > 0]
 dat <- dat[Distance < 50]
